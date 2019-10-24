@@ -1,3 +1,4 @@
+const fs = require("fs");
 const FDConfig = require("./fdconfig.json");
 const Request = require("request-promise");
 
@@ -16,16 +17,17 @@ async function framedata(message, args) {
 
     const charName = args.shift().toLowerCase();
 
-    var char = checkCharacter(charName, game)
-        .then( function () {
-            break;
-        })
-        .catch( function (err) {
-            message.channel.send(err.message);
-            return;
-        });
+    try {
+        var char = await checkCharacter(charName, game, gameName);
+    } catch (err) {
+        message.channel.send(err.message);
+        return;
+    }
 
     console.log(char);
+
+    message.channel.send("Character is " + char + "! :D");
+
 }
 
 function checkGame(gameName) {
@@ -46,7 +48,7 @@ function checkGame(gameName) {
     return game;
 }
 
-async function checkCharacter(charName, game) {
+async function checkCharacter(charName, game, gameName) {
     var char = null;
 
     for (jsonChar in game.characters) {
@@ -57,7 +59,7 @@ async function checkCharacter(charName, game) {
         }
     }
 
-    let charURI = 'http://dustloop.com/wiki/api.php?action=parse&page=BlazBlue%20Cross%20Tag%20Battle&prop=links&format=json';
+    let charURI = 'http://dustloop.com/wiki/api.php?action=parse&page=' + FDConfig.game[gameName].charpage + '&prop=links&format=json';
     var result = await Request(charURI);
     var jsonLinks = JSON.parse(result);
     chars = [];
@@ -68,7 +70,7 @@ async function checkCharacter(charName, game) {
             continue;
         }
         if (url[0] == game.urlname) {
-            name = url[1].replace(/\s+/g, '');
+            name = url[1].replace(/\s+/g, '_');
             if (name.toLowerCase().includes(charName)) {
                 chars.push(name);
             }
@@ -79,7 +81,13 @@ async function checkCharacter(charName, game) {
         var err = new Error("Multiple possible characters, Did you mean?: " + chars.join(', '));
         throw err;
     } else if (chars.length == 1) {
-        console.log(chars[0]);
+        FDConfig.game[gameName].characters[charName] = chars[0];
+        
+        fs.writeFile("./functions/fdconfig.json", JSON.stringify(FDConfig, null, 2), "utf8", function (err) {
+            if (err) return console.log(err);
+            console.log(JSON.stringify(FDConfig));
+        });      
+
         return chars[0];
     }
 

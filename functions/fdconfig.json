@@ -1,17 +1,29 @@
 {
-    "game": {
-        "bbtag": {
-            "urlname" : "BBTag",
-            "characters": {
-                "naotos" : "NaotoS"
-            }
-        },
-        "ggxrd": {
-            "urlname" : "GGXRD-R2",
-            "characters" : {
-                "elphelt" : "Elphelt-Valentine",
-                "slayer" : "Slayer"
-            }
-        }
+  "game": {
+    "bbtag": {
+      "urlname": "BBTag",
+      "charpage": "BlazBlue%20Cross%20Tag%20Battle",
+      "characters": {
+        "naotos": "NaotoS",
+        "naotok": "NaotoKurogane",
+        "jin": "JinKisaragi",
+        "ragna": "RagnatheBloodedge",
+        "liz": "Elizabeth",
+        "eliz": "Elizabeth"
+      }
+    },
+    "ggxrd": {
+      "urlname": "GGXRD-R2",
+      "charpage": "Guilty_Gear_Xrd_REV_2",
+      "characters": {
+        "elphelt": "Elphelt-Valentine",
+        "slayer": "Slayer",
+        "slay": "Slayer",
+        "diz": "Dizzy",
+        "ky": "Ky_Kiske",
+        "elp": "Elphelt_Valentine",
+        "miscellaneous": "Miscellaneous"
+      }
     }
+  }
 }
