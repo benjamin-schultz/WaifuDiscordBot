@@ -12,7 +12,11 @@
       "charpage": "Guilty_Gear_Xrd_REV_2",
       "characters": {
         "slayer": "Slayer",
-        "dizzy": "Dizzy"
+        "dizzy": "Dizzy",
+        "potemkin": "Potemkin",
+        "pot": "Potemkin",
+        "elph": "Elphelt_Valentine",
+        "sol": "Sol_Badguy"
       }
     }
   }
