@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 
-const Config = require("./config.json");
+const Config = require("../config.json");
 const Lobby = require("./functions/lobby-functions.js");
 const Misc = require("./functions/misc-functions.js")
 const FrameData = require("./functions/framedata-functions.js");
