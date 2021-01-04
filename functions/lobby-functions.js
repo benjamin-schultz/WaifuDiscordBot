@@ -2,7 +2,7 @@ const fs = require("fs");
 const SteamApi = require("steamapi");
 const SteamWebApi = require('steamwebapi');
 
-const config = require("../config.json");
+const config = require("../../config.json");
 const Steam = new SteamApi(config.steamkey);
 const users = require("./users.json");
 

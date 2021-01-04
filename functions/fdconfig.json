@@ -1,10 +1,33 @@
 {
-    "game": {
-        "bbtag": {
-            "urlname" : "BBTag"
-        },
-        "ggxrd": {
-            "urlname" : "GGXRD-R2"
-        }
+  "game": {
+    "bbtag": {
+      "urlname": "BBTag",
+      "charpage": "BlazBlue%20Cross%20Tag%20Battle",
+      "characters": {
+        "jin": "JinKisaragi",
+        "hilda": "Hilda",
+        "ragna": "Ragna_the_Bloodedge"
+      }
+    },
+    "ggxrd": {
+      "urlname": "GGXRD-R2",
+      "charpage": "Guilty_Gear_Xrd_REV_2",
+      "characters": {
+        "slayer": "Slayer",
+        "dizzy": "Dizzy",
+        "potemkin": "Potemkin",
+        "pot": "Potemkin",
+        "elph": "Elphelt_Valentine",
+        "sol": "Sol_Badguy"
+      }
+    },
+    "dbfz": {
+      "urlname": "DBFZ",
+      "charpage": "Dragon_Ball_FighterZ",
+      "characters": {
+        "videl": "Videl",
+        "goku": "Goku"
+      }
     }
+  }
 }
