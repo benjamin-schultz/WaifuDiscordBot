@@ -3,7 +3,7 @@ const FDConfig = require("./fdconfig.json");
 const Request = require("request-promise");
 
 
-const GameDisplayMap = new Map([['BBTag', displayBBTagFD], ['GGXRD-R2', displayGGFD]]);
+const GameDisplayMap = new Map([['BBTag', displayBBTagFD], ['GGXRD-R2', displayGGFD], ['DBFZ', displayDBFZ]]);
 
 async function framedata(message, args) {
     
@@ -85,7 +85,12 @@ async function checkCharacter(charName, game, gameName) {
         }
         if (url[0] == game.urlname && url[2] == "Frame Data") {
             name = url[1].replace(/\s+/g, '_');
-            if (name.toLowerCase().includes(charName)) {
+            if (name.toLowerCase() == charName) {
+                chars = [];
+                chars.push(name);
+                break;
+            }
+            else if (name.toLowerCase().includes(charName)) {
                 chars.push(name);
             }
         }
@@ -130,7 +135,7 @@ function extractAllFD(json) {
 function extractFD(text, fdMap) {
     var index = text.search('=');
     var fdtype = text.substring(0, index).replace(/\r?\n|\r/g , "");
-    var fd = text.substring(index+1, text.length).replace(/\r?\n|\r/g , "");
+    var fd = text.substring(index+1, text.length).replace(/\r?\n|\r|}/g , "");
     fdMap.set(fdtype, fd);
 }
 
@@ -152,6 +157,7 @@ async function loadMoveData(moveName, charName, game) {
         for (move in section) {
             moves.push(section[move].anchor.substring(0, section[move].anchor.length - 5));
         }
+        moves.shift();
         otherMoves = "Other possible moves: " + moves.join(', ');
     } else if (section.length == 0) {
         var err = new Error("Cannot find move name!");
@@ -190,7 +196,15 @@ function displayGGFD(charName, fdMap) {
     return string;
 }
 
+function displayDBFZ(charName, fdMap) {
+    var string = "```Game: BBTag | Character: " + charName + " | Move: " + fdMap.get('moveName') + 
+    "\nStartup: " + fdMap.get('startup') + " | Active: " + fdMap.get('active') + " | Recovery: " + fdMap.get('recovery') +
+    "\nFrame Adv.: " + fdMap.get('frameAdv') + " | Level: " + fdMap.get('level') + " | Guard: " + fdMap.get('guard') +
+    "\nInvul: " + fdMap.get('invul') + " | Damage: " + fdMap.get('damage') + 
+    "```";
 
+    return string;
+}
 
 
 module.exports = {

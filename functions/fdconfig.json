@@ -4,7 +4,9 @@
       "urlname": "BBTag",
       "charpage": "BlazBlue%20Cross%20Tag%20Battle",
       "characters": {
-        "jin": "JinKisaragi"
+        "jin": "JinKisaragi",
+        "hilda": "Hilda",
+        "ragna": "Ragna_the_Bloodedge"
       }
     },
     "ggxrd": {
@@ -17,6 +19,14 @@
         "pot": "Potemkin",
         "elph": "Elphelt_Valentine",
         "sol": "Sol_Badguy"
+      }
+    },
+    "dbfz": {
+      "urlname": "DBFZ",
+      "charpage": "Dragon_Ball_FighterZ",
+      "characters": {
+        "videl": "Videl",
+        "goku": "Goku"
       }
     }
   }
